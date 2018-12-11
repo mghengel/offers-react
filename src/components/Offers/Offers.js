@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import { Offer } from '../';
 
 export class Offers extends Component {
@@ -18,5 +19,17 @@ export class Offers extends Component {
      )
    }
 }
+
+Offers.propTypes = {
+  offers: PropTypes.array,
+  className: PropTypes.string,
+  handleClick: PropTypes.func
+};
+
+Offers.defaultProps = {
+  offers: [],
+  single: false,
+  handleClick: () => {}
+};
 
 export default Offers;

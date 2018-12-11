@@ -32,12 +32,18 @@ export class Offer extends Component {
    }
 }
 
-Offer.proptypes = {
+Offer.propTypes = {
+  offer: PropTypes.shape({}),
+  single: PropTypes.bool,
+  className: PropTypes.string,
   handleClick: PropTypes.func
 };
 
 Offer.defaultProps = {
-  handleClick: () => {},
+  offer: {},
+  single: false,
+  className: '',
+  handleClick: () => {}
 };
 
 export default Offer;

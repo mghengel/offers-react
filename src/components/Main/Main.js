@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Api, OffersContainer } from "../";
+import PropTypes from 'prop-types';
 
 export class Main extends Component {
   constructor(props) {
@@ -7,7 +8,7 @@ export class Main extends Component {
     this.state = {
       retailers: [],
       offers: [],
-      currentOffer: '',
+      currentOffer: {},
       filterOffers: [],
       currentRetailer: '',
       searchValue: ''
@@ -39,7 +40,7 @@ export class Main extends Component {
       }
   };
   handleClose = () => {
-    this.setState({ currentOffer: '' });
+    this.setState({ currentOffer: {} });
   };
   getOffers = offerId => {
     Api.getOffers(offerId).then(data => {
@@ -90,5 +91,13 @@ export class Main extends Component {
        });
    };
 }
+
+Main.propTypes = {
+  className: PropTypes.string
+};
+
+Main.defaultProps = {
+  className: ''
+};
 
 export default Main;

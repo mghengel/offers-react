@@ -4,7 +4,6 @@ import OffersContainer from './';
 
 
 const props = {
-  filterByRetailer: () => {},
   retailers: [
     {
       created_at: "2018-12-10T02:38:37.573Z",
@@ -40,7 +39,11 @@ const props = {
         terms: "Offer valid on Bhakti Ready-To-Drink Chai, For any variety, in 16 oz. bottle↵↵Offer only redeemable at Whole Foods.",
         updated_at: "2018-12-10T02:38:37.318Z"
       }
-  ]
+  ],
+  filterByRetailer: () => {},
+  getOffers: () => {},
+  handleSearch: () => {},
+  handleClose: () => {}
 }
 
 describe('Main', () => {
