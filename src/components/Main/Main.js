@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Offer, Filter, Search, Offers, Api } from "../";
+import { Api, OffersContainer } from "../";
 
 export class Main extends Component {
   constructor(props) {
@@ -17,40 +17,42 @@ export class Main extends Component {
     this.getOffers();
     this.getRetailers();
   }
+  render(){
+    const { className } = this.props;
+    const { retailers, filterOffers } = this.state;
+    const offersContaierProps = this.createProps();
+    if (!retailers.length && !filterOffers.length) return <div>...Loading</div>;
+    return(
+      <div className={className}>
+        <OffersContainer {...offersContaierProps} />
+      </div>
+     )
+  }
+  createProps = () => {
+    return {
+      ...this.state,
+      handleClose: this.handleClose,
+      getOffers: this.getOffers,
+      getRetailers: this.getRetailers,
+      filterByRetailer: this.filterByRetailer,
+      handleSearch: this.handleSearch
+      }
+  };
   handleClose = () => {
     this.setState({ currentOffer: '' });
   };
-  render(){
-    const { className } = this.props;
-    const { retailers, filterOffers, currentOffer, currentRetailer, searchValue } = this.state;
-    if (!retailers.length && !filterOffers.length) return <div>...Loading</div>;
-    return(
-      <div className={`${className} offerContainer`}>
-        {currentOffer ?
-          <Offer handleClose={this.handleClose} offer={currentOffer} singleOffer={true} />
-          :
-          <div>
-            <Filter retailers={retailers} currentRetailer={currentRetailer} filterByRetailer={this.filterByRetailer} />
-            <div>Or</div>
-            <Search handleSearch={this.handleSearch} value={searchValue} />
-            <Offers offers={filterOffers} handleClick={this.getOffers}/>
-          </div>
-        }
-      </div>
-     )
-   }
-   getOffers = offerId => {
-     Api.getOffers(offerId).then(data => {
-       if (offerId) {
-         this.setState({ currentOffer: data });
-       } else {
-         this.setState({
-           offers: data,
-           filterOffers: data
-         })
-       }
-     });
-   };
+  getOffers = offerId => {
+    Api.getOffers(offerId).then(data => {
+      if (offerId) {
+        this.setState({ currentOffer: data });
+      } else {
+        this.setState({
+          offers: data,
+          filterOffers: data
+        })
+      }
+    });
+  };
    getRetailers = () => {
      Api.getRetailers().then(data => {
        const retailers = data.sort( (a, b) => {

@@ -14,7 +14,7 @@ export class Offer extends Component {
     return(
       <div className={`${className} offer ${singleOffer ? 'single' : ''}`} onClick={this.handleClick}>
         {singleOffer &&
-          <a className="back" onClick={this.handleClose}>Back</a>
+          <button className="back" onClick={this.handleClose}>Back</button>
         }
         <div className="title">{offer.name}</div>
         <div className="imgContainer">
