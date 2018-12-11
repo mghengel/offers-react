@@ -1,3 +1,23 @@
+
+## Install Instructions
+
+```
+brew install yarn
+
+git clone https://github.com/mghengel/offers-react.git
+
+cd project_directory
+yarn install
+
+
+yarn start
+
+yarn test
+
+http://localhost:3001
+```
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
