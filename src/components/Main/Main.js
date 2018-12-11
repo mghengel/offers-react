@@ -22,7 +22,7 @@ export class Main extends Component {
     const { className } = this.props;
     const { retailers, filterOffers } = this.state;
     const offersContaierProps = this.createProps();
-    if (!retailers.length && !filterOffers.length) return <div>...Loading</div>;
+    if (!retailers.length && !filterOffers.length) return <div className={className}>...Loading</div>;
     return(
       <div className={className}>
         <OffersContainer {...offersContaierProps} />
